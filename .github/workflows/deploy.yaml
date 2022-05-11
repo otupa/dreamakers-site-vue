@@ -4,7 +4,7 @@ name: deploy-ghpages
 on:
   push:
     branches:
-      - prod
+      - master
 
 jobs:
   deploy:
