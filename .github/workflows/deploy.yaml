@@ -1,0 +1,32 @@
+
+name: deploy-ghpages
+
+on:
+  push:
+    branches:
+      - prod
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v2.1.5
+        with: 
+          node-version: '17.8.0'
+
+      - name: Install and build
+        run: |
+          yarn install
+          yarn build
+      - name: Deploy to github pages
+        uses: JamesIves/github-pages-deploy-action@v4.3.3
+        with:
+          branch: gh-pages
+          folder: dist  
+
+      - name: Publish deployed code 
+        uses: actions/upload-artifact@v2
+        with:
+          name: published
+          path: dist
