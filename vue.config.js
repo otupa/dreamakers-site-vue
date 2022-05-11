@@ -1,6 +1,7 @@
-
-
-module.exports = {
-    publicPath: '/dreamakers-site-vue/'
-  }
-  
+const { defineConfig } = require('@vue/cli-service')
+module.exports = defineConfig({
+  transpileDependencies: true,
+  publicPath: process.env.NODE_ENV === 'production'
+    ? '/dreamakers-site-vue/'
+    : '/'
+})
